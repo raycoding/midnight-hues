@@ -1,0 +1,4 @@
+*~
+*.swp
+/tmp/
+server/node_modules

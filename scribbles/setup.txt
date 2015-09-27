@@ -1,0 +1,29 @@
+For Ubuntu 14.04
+
+#Installing NodeJS
+
+Get Node verson 0.12.x
+sudo apt-get install nodejs
+sudo apt-get install npm
+
+#Installing MongoDB
+
+Get MongoDB 3.0.6
+Reference - http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+sudo service mongod start
+Check /var/log/mongodb/mongod.log for successful start or execute $> mongo to enter CLI
+
+
+Post successful installation of Node 0.12.x and MongoDB 3.0.6
+
+cd server
+npm install express   -> (We will be using ExpressJS for Middleware)
+npm install mongodb   -> (Driver for NodeJS to speak to MongoDB)
+
+
+#Verify Connection to MongoDB from NodeJS
+
+$> node connection_test.js
+
+Connect using the MongoClient to a running mongod instance by specifying the MongoDB uri. For example, the following code connects to a MongoDB instance that runs on the localhost interface on port 27017 and switch to the test database.
+A successful connection should print out the following line: - Connected correctly to server!
