@@ -18,3 +18,14 @@ Check /var/log/mongodb/mongod.log for successful start or execute $> mongo to en
 
 use midnight_hues_dev;
 db.test_table.insert({"name":"testing insert"});
+
+
+
+#Installing the NPM modules
+
+cd scribbles
+npm install
+
+#Running the App
+
+node server.js
