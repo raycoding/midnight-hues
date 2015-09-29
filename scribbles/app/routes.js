@@ -8,10 +8,22 @@ function scribblesList(res){
 		}).sort({ done : 1 });
 };
 
+
 module.exports = function(app) {
 
 	app.get('/api/scribbles', function(req, res) {
 		scribblesList(res);
+	});
+
+	// get singular object
+	app.get('/api/scribbles/:scribble_id', function(req, res) {
+		console.log("Query to find scribble with _id "+ req.params.scribble_id )
+		Scribble.findOne({_id : req.params.scribble_id},function(err, scribble) {
+			if (err)
+				res.send(err)
+			console.log(scribble);
+			res.json(scribble); // return scribbles
+		});
 	});
 
 	// create a scribble and return updated set
@@ -51,8 +63,14 @@ module.exports = function(app) {
 		});
 	});
 
+	// Handle all Angular routes!
+	app.get('/templates/:filename', function (req, res) {
+	  var filename = req.params.filename;
+	  res.render('templates/' + filename);
+	});
+
 	// default -------------------------------------------------------------
-	app.get('*', function(req, res) {
+	app.use('*', function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 };

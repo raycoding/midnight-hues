@@ -13,7 +13,9 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 // Standards taken from practices
-app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev')); // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'})); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json

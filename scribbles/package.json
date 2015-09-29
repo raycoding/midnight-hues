@@ -9,6 +9,7 @@
     "mongoose"        : "~4.1.8",
     "morgan"          : "~1.6.1",
     "body-parser"     : "~1.14.1",
-    "method-override" : "~2.3.5"
+    "method-override" : "~2.3.5",
+    "ejs"             : "~2.3.4"
   }
 }

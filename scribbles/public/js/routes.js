@@ -1,8 +1,10 @@
 // Angular Routes
-app.config(['$routeProvider', function ($routeProvider) {
+app
+.config(['$routeProvider', '$locationProvider', function ($routeProvider,$locationProvider) {
   $routeProvider
-    .when('/:id', {
-      templateUrl: '/scribble_detail.html',
+    .when('/scribbles/:id', {
+      templateUrl: 'templates/scribble_details.ejs',
       controller: 'scribbleDetailController'
-   });
+   })
+   .otherwise({redirectTo:'/'});
 }]);
