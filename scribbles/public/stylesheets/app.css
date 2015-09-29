@@ -1,0 +1,8 @@
+.scribble_completed_true{
+	color : grey;
+	text-decoration:line-through
+}
+
+.scribble_completed_false{
+	color: green;
+}

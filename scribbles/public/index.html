@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Scribblr</title>
 	<link rel="stylesheet" href="stylesheets/vendor/bootstrap-3.3.5.min.css">
-	<link rel="stylesheet" href="stylesheets/vendor/font-awesome-4.3.0/css/font-awesome.css">
+	<link rel="stylesheet" href="stylesheets/vendor/font-awesome-4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="stylesheets/app.css">
 	<script src="js/vendor/jquery-1.11.3.min.js"></script>
 	<script src="js/vendor/bootstrap-3.3.5.min.js"></script>
 	<script src="js/vendor/angular-1.4.6.min.js"></script>
@@ -18,28 +19,42 @@
 <body ng-controller="scribblesController">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-xs-offset-1 text-center">
-				<h4>In Bucket (<span class="badge">{{ scribbles.length }}</span>)</h4>
+			<div class="col-xs-12">
+				<h4>Current Scribbles <span class="badge">{{ scribbles.length }}</span> </h4>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-xs-offset-1 text-center">
-				<form>
+			<div class="col-xs-12">
+				<form class="form-inline">
 					<div class="form-group">
-						<input type="text" class="form-control input-lg text-center" placeholder="What's on your mind?" ng-model="formData.text">
+						<div class="input-group">
+							<div class="input-group-addon"><i class="fa fa-map-pin"></i></div>
+							<input type="text" class="form-control input-lg" placeholder="What's on your mind?" ng-model="formData.text">
+							<div class="input-group-addon"></div>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="newScribble()">Add</button>
+					<button type="submit" class="btn btn-default btn-lg" ng-click="newScribble()">Add</button>
 				</form>
 			</div>
 		</div>
 		<div class="row" style="margin-top:5px;">
-			<div class="col-xs-12 col-xs-offset-1">
-				<i class="fa fa-search"></i> <input type="text" class="form-control text-center" ng-model="search.title">
-				<div class="checkbox" ng-repeat="scribble in scribbles | filter: search">
-					<label>
-						<input type="checkbox" ng-model="scribble.done" ng-click="completeScribble(scribble._id,scribble.done)"> {{ scribble.title }}
-					</label>
+			<div class="col-xs-12">
+				<div class="input-group">
+					<div class="input-group-addon"><i class="fa fa-search"></i></div>
+					<input type="text" class="form-control	" ng-model="search.title">
 				</div>
+				<ul class="list-group">
+					<li class="checkbox list-group-item" ng-repeat="scribble in scribbles | filter: search">
+						<div class="row">
+							<div class="col-xs-1">
+								<label><input type="checkbox" ng-model="scribble.done" ng-click="completeScribble(scribble._id,scribble.done)"></label>
+							</div>
+							<div class="col-xs-10">
+								<span class="scribble_completed_{{ scribble.done }}">{{ scribble.title }}<span> <i class="fa fa-eye"></i>
+							</div>
+						</div>
+					</li>
+				</ul>
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
