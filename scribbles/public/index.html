@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="stylesheets/vendor/bootstrap-3.3.5.min.css">
 	<link rel="stylesheet" href="stylesheets/vendor/font-awesome-4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="stylesheets/app.css">
+	<style>[ng-cloak] { display: none; }</style>
 	<script src="js/vendor/jquery-1.11.3.min.js"></script>
 	<script src="js/vendor/bootstrap-3.3.5.min.js"></script>
 	<script src="js/vendor/angular-1.4.6.min.js"></script>
@@ -18,23 +19,17 @@
 	<script src="js/routes.js"></script>
 </head>
 <body ng-controller="scribblesController">
-	<div class="container">
-		<div class="row">
+	<div class="container-fluid" id="scribblerapp" >
+		<div class="row" style="margin-top:5px;">
 			<div class="col-xs-12">
-				<h4>Current Scribbles <span class="badge">{{ scribbles.length }}</span> </h4>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<form class="form-inline">
+				<form class="form-inline ng-pristine ng-valid" ng-submit="newScribble()" id="scribble-form">
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-map-pin"></i></div>
-							<input type="text" class="form-control input-lg" placeholder="What's on your mind?" ng-model="formData.text">
+							<input id="new-scribble" type="text" class="form-control input-lg ng-pristine ng-valid ng-touched" placeholder="What's on your mind?" ng-model="formData.text" ng-disabled="saving" autofocus>
 							<div class="input-group-addon"></div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-default btn-lg" ng-click="newScribble()">Add</button>
 				</form>
 			</div>
 		</div>
@@ -49,14 +44,14 @@
 						<div ng-view></div>
 					</div>
 				</div>
-				<ul class="list-group">
+				<ul class="list-group" id="scribbles-list">
 					<li class="checkbox list-group-item" ng-repeat="scribble in scribbles | filter: search">
 						<div class="row">
 							<div class="col-xs-1">
 								<label><input type="checkbox" ng-model="scribble.done" ng-click="completeScribble(scribble._id,scribble.done)"></label>
 							</div>
 							<div class="col-xs-10">
-								<span class="scribble_completed_{{ scribble.done }}">{{ scribble.title }}<span> <a href="#/scribbles/{{ scribble._id }}"><i class="fa fa-eye"></i></a>
+								<span class="scribble_completed_{{ scribble.done }}">{{ scribble.title }}<span> <a href="#/scribbles/{{ scribble._id }}"><i class="fa fa-eye"></i></a> <span class="destroy" ng-click="deleteScribble(scribble._id)"></span>
 							</div>
 						</div>
 					</li>

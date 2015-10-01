@@ -21,8 +21,7 @@ module.exports = function(app) {
 		Scribble.findOne({_id : req.params.scribble_id},function(err, scribble) {
 			if (err)
 				res.send(err)
-			console.log(scribble);
-			res.json(scribble); // return scribbles
+			res.json(scribble); // return scribble
 		});
 	});
 
