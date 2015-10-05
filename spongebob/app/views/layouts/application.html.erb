@@ -2,13 +2,70 @@
 <html>
 <head>
   <title>Spongebob</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    "application", :media => "all", 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag 'font-awesome-4.4.0/css/font-awesome.min' %>
+	<%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=<%= root_url %>><i class='fa fa-code-fork fa-lg'></i><span>Spongebob</span></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<% if current_user %>
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Orders <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li class="dropdown-header">New Order</li>
+								<li><a href="<%= root_url %>">Pending Orders</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Completed Orders</li>
+								<li><a href="<%= root_url %>">View All</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Wallet<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li class="dropdown-header">Wallet</li>
+								<li><a href="<%= root_url %>">Points</a></li>
+								<li><a href="<%= root_url %>">Redeem</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href=<%= user_path(current_user.id) %>>My Profile</a></li>
+								<li><a href=<%= root_url %>>My Addresses</a></li>
+								<li><a href=<%= logout_path %>>LogOut</a></li>
+							</ul>
+						</li>
+					</ul>
+				<% else %>
+					<ul class="nav navbar-nav navbar-right">
+						<li><%= login_path %></li>
+					</ul>
+				<% end %>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+	<div id="main-container" class="container-fluid" style="padding-top:50px !important">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3>Spongebob - Discovering Washable</h3>
+				<% flash.each do |key, value| %>
+        	<div class="alert alert-warning alert-dismissible fade in" role="alert">
+			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			      <strong><%= value.inspect.html_safe %></strong>
+			    </div>
+      	<% end %>
+				<%= yield %>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
