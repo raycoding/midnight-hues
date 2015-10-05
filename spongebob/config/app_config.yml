@@ -1,0 +1,16 @@
+global: &global
+  ASSET_HOST: http://spongebob.dev
+  csv_staging: /runtime/spongebob/csv_staging
+  downloads_directory: /runtime/spongebob/downloads
+
+development:
+  <<: *global
+  ASSET_HOST: http://spongebob.dev
+
+test:
+  <<: *global
+  ASSET_HOST: http://spongebob.test
+
+production:
+  <<: *global
+  ASSET_HOST: http://spongebob.com

@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: spongebob_dev
+
+test:
+  <<: *default
+  database: spongebob_test
+
+production:
+  <<: *default
+  database: spongebob_prod
+  username: spongebob
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>

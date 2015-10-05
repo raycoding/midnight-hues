@@ -1,0 +1,9 @@
+if ( pgrep -f delayed_job )
+then
+	echo "Waiting to kill Delayed_job"
+	pkill -9 -f delayed_job
+    exit 0
+else
+    echo "STOP KILLED IT"
+    exit 0
+fi
