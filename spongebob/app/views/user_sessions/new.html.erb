@@ -1,11 +1,8 @@
-<h1>Login</h1>
-<%= form_for @user_session do |f| %>
-  <%= f.label :primary_phone %><br />
-  <%= f.text_field :primary_phone %><br />
+<%= form_for(@user_session,:html=>{:class=>'form-signin'}) do |f| %>
+	<h2 class="form-signin-heading">Please sign in</h2>
+  <%= f.text_field :primary_phone, :class=>"form-control", :placeholder=>"phone number", :autofocus=>true %><br />
+  <%= f.password_field :password, :class=>"form-control", :placeholder=>"password" %>
   <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.submit "Login" %>
+  <%= f.submit "Sign In", :class=>'btn btn-lg btn-primary btn-block' %>
 <% end %>
 <a href=<%= new_user_path %>>Sign Up!</a>

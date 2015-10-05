@@ -262,7 +262,7 @@ DEPENDENCIES
   activerecord-session_store (~> 0.1)
   authlogic (~> 3.4)
   autoprefixer-rails (~> 5.1)
-  bootstrap-sass (~> 3.3)
+  bootstrap-sass (~> 3.3.5)
   cancancan (~> 1.10)
   daemons (~> 1.1)
   dalli (~> 2.7)
