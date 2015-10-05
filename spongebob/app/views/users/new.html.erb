@@ -1,5 +1,10 @@
-<h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Sign Up" %>
-<% end %>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-8">
+		<%= form_for(@user,:html=>{:class=>'form-signin'}) do |f| %>
+			<legend class="form-signin-heading">Sign Up</legend>
+		  <%= render :partial => "form", :object => f %>
+		  <%= f.submit "Save", :class=>'btn btn-lg btn-default btn-block' %>
+		  Do you already have account? <a href=<%= login_path %>>Sign In!</a>
+		<% end %>
+	</div>
+</div>

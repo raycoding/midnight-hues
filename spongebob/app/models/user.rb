@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
 	validates_presence_of :name , :message => "Name cannot be blank"
 	validates_presence_of :email , :message => "Email cannot be blank"
-	validates_presence_of :primary_phone , :message => "Phone Number cannot be blank"
+  validates_uniqueness_of :email , :message => "Email is already registered"
+	validates_presence_of :primary_phone , :message => "Mobile Number cannot be blank"
+  validates_uniqueness_of :primary_phone , :message => "Mobile Number is already registered"
   acts_as_authentic do |c|
   	c.login_field = :primary_phone
+    c.validate_login_field = false
   	c.crypto_provider = Authlogic::CryptoProviders::SCrypt
   end
 

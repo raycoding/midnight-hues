@@ -1,6 +1,10 @@
-<h1>Edit Details</h1>
-<%= form_for @user do |f| %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %>
-<% end %>
-<br /><%= link_to "My Profile", user_path %>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-8">
+		<%= form_for(@user,:html=>{:class=>'form-signin'}) do |f| %>
+			<h2 class="form-signin-heading">Edit Details</h2>
+		  <%= render :partial => "form", :object => f %>
+		  <%= f.submit "Save", :class=>'btn btn-lg btn-default btn-block' %>
+		  <%= link_to "Cancel", user_path %>
+		<% end %>
+	</div>
+</div>

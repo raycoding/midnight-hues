@@ -1,12 +1,20 @@
-<%= form.label :name %><br />
-<%= form.text_field :name %><br />
-<%= form.label :email %><br />
-<%= form.text_field :email %><br />
-<%= form.label :primary_phone %><br />
-<%= form.text_field :primary_phone %><br />
-<br />
-<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
-<%= form.password_field :password %><br />
-<br />
-<%= form.label :password_confirmation %><br />
-<%= form.password_field :password_confirmation %><br />
+<div class="form-group">
+	<label for="name" class="control-label">Name</label>
+	<%= form.text_field :name,:class=>"form-control", :placeholder=>"e.g John Smith", :autofocus=>true %>
+</div>
+<div class="form-group">
+	<label for="primary_phone" class="control-label">Mobile Number</label>
+	<%= form.text_field :primary_phone, :class=>"form-control", :placeholder=>"e.g +91-7042007000" %>
+</div>
+<div class="form-group">
+	<label for="email" class="control-label">Email</label>
+	<%= form.text_field :email, :class=>"form-control", :placeholder=>"e.g john@gmail.com" %>
+</div>
+<div class="form-group">
+	<label for="password" class="control-label">Password</label>
+	<%= form.password_field :password, :class=>"form-control", :placeholder=>"enter your secret password" %>
+</div>
+<div class="form-group">
+	<label for="password_confirmation" class="control-label">Confirm Password</label>
+	<%= form.password_field :password_confirmation, :class=>"form-control", :placeholder=>"retype password" %>
+</div>

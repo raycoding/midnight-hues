@@ -1,11 +1,14 @@
 <p>
+  <b>Name:</b>
+  <%=h @user.name %>
+</p>
+<p>
   <b>Email:</b>
   <%=h @user.email %>
 </p>
-
 <p>
-  <b>Primary Phone Number:</b>
+  <b>Mobile Number:</b>
   <%=h @user.primary_phone %>
 </p>
 
-<%= link_to 'Edit', edit_user_path %>
+<%= link_to 'Edit', edit_user_path, :class=>'btn btn-lg btn-default' %>
