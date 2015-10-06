@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005083950) do
+ActiveRecord::Schema.define(version: 20151006090428) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   limit: 4,     default: 0, null: false
@@ -29,6 +29,31 @@ ActiveRecord::Schema.define(version: 20151005083950) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   add_index "delayed_jobs", ["queue", "priority", "run_at"], name: "delayed_jobs_priority_by_queue", using: :btree
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "type",            limit: 255
+    t.string   "zip",             limit: 10
+    t.string   "city",            limit: 200
+    t.string   "district",        limit: 100
+    t.string   "state",           limit: 100
+    t.string   "country",         limit: 50
+    t.string   "status",          limit: 255, default: "active"
+    t.string   "phone_code",      limit: 255
+    t.string   "iso2code",        limit: 255
+    t.string   "iso3code",        limit: 255
+    t.string   "created_by",      limit: 255
+    t.string   "last_updated_by", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "locations", ["city"], name: "index_city", using: :btree
+  add_index "locations", ["country", "state", "city", "zip"], name: "c_st_ci_zip", using: :btree
+  add_index "locations", ["country", "state", "district", "city", "zip"], name: "c_st_dis_ci_zip", using: :btree
+  add_index "locations", ["country"], name: "index_country", using: :btree
+  add_index "locations", ["state"], name: "index_state", using: :btree
+  add_index "locations", ["type"], name: "index_type", using: :btree
+  add_index "locations", ["zip"], name: "index_zip", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",        limit: 255,                      null: false
@@ -50,6 +75,31 @@ ActiveRecord::Schema.define(version: 20151005083950) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "temp_locations", id: false, force: :cascade do |t|
+    t.string  "c_code",      limit: 2
+    t.string  "zip",         limit: 20
+    t.string  "area",        limit: 180
+    t.string  "state",       limit: 100
+    t.string  "district",    limit: 200
+    t.string  "admin_name3", limit: 100
+    t.string  "latitude",    limit: 20
+    t.string  "longitude",   limit: 20
+    t.integer "accuracy",    limit: 4
+  end
+
+  create_table "tmp_locations", id: false, force: :cascade do |t|
+    t.string "type",       limit: 255
+    t.string "zip",        limit: 20
+    t.string "city",       limit: 255
+    t.string "district",   limit: 255
+    t.string "state",      limit: 255
+    t.string "country",    limit: 255
+    t.string "status",     limit: 255
+    t.string "phone_code", limit: 255
+    t.string "iso2code",   limit: 255
+    t.string "iso3code",   limit: 255
+  end
 
   create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id",      limit: 4,                      null: false
