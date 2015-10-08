@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get 'logout' => 'user_sessions#destroy', :as=>'logout'
   get 'login' => 'user_sessions#new', :as=>'login'
   resources :user_sessions, :only=>[:create]
+
+  resources :price_details
 end
