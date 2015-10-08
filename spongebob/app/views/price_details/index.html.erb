@@ -1,5 +1,45 @@
+<br/>
 <table>
-	<th>Category</th>
-	<th>Item</th>
-	<th>Price</th>
+	<thead>
+		<tr>
+			<th>Category</th>
+			<th>Item</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if !@price.blank? %>
+			<% @price.each do |price_details| %>
+				<tr>
+					<td><%= price_details.category %></td>
+					<td><%= price_details.item %></td>
+					<td><%= price_details.price.to_f %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
 </table>
+
+<style>
+  table {
+      width:100%;
+  }
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+  th, td {
+      padding: 5px;
+      text-align: left;
+  }
+  table#t01 tr:nth-child(even) {
+      background-color: #eee;
+  }
+  table#t01 tr:nth-child(odd) {
+     background-color:#fff;
+  }
+  table#t01 th  {
+      background-color: black;
+      color: white;
+  }
+</style>
