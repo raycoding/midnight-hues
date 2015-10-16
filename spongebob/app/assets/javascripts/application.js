@@ -16,3 +16,25 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+//= require websocket_rails/main
+
+$(function() { 
+	// var task = {
+	//   name: 'Start taking advantage of WebSockets',
+	//   completed: false
+	// }
+
+	var dispatcher = new WebSocketRails(window.location.host + "/websocket")
+
+	console.log(dispatcher)
+
+	// dispatcher.trigger('tasks.create', task);
+
+	dispatcher.bind('create_success', function() {
+	  console.log('successfully created');
+	});
+
+	$("#send_message").click(function() {
+	  dispatcher.trigger('create', "sent");
+	});
+});
