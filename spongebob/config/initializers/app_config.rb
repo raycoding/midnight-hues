@@ -6,6 +6,9 @@ ActiveRecord::Base.send(:include, DeepCloning)
 require 'pooling'
 ActiveRecord::Base.send(:include, Pooling)
 
+#LatLongFinder
+require 'lat_long_finder'
+
 #Delayed Job in Transaction
 require 'delayed_job_with_transaction'
 

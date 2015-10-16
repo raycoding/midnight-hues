@@ -15,6 +15,7 @@ class CreateTableLocation < ActiveRecord::Migration
     	t.string :last_updated_by
     end
     execute "ALTER TABLE `locations` ADD COLUMN `created_at` timestamp NULL DEFAULT NULL, ADD COLUMN `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    execute "ALTER TABLE `locations` ADD COLUMN latitude varchar(20),ADD COLUMN longtitude varchar(20),ADD COLUMN ll_source varchar(20)"
     add_index(:locations,:type,:name=>"index_type")
     add_index(:locations,:zip,:name=>"index_zip")
     add_index(:locations,:city,:name=>"index_city")
@@ -22,6 +23,7 @@ class CreateTableLocation < ActiveRecord::Migration
     add_index(:locations,:country,:name=>"index_country")
     add_index(:locations,[:country,:state,:district,:city,:zip],:name=>"c_st_dis_ci_zip")
     add_index(:locations,[:country,:state,:city,:zip],:name=>"c_st_ci_zip")
+    add_index(:locations,[:latitude,:longtitude,:type],:name=>"l_l_zip")
   end
 
   def self.down
